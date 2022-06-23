@@ -25,10 +25,33 @@ MongoClient.connect(dbConnectionString)
         collection = db.collection('movies')
 
     })
+
 // Now we tell it to listen to a port. In this case we will put the por in our env file. WE do the || so that heroku can pick the port if it neeeds to
+// app.listen(process.env.PORT || PORT ,()=>{
+
+//     console.log(`Server is running on port ${process.env.PORT}`)
+// })
+
+// we create a script so that nodemon can be run whenever we want
+// the script is  "dev": "nodemon server.js"
+
+// We need to put our middleware before our app listen
+
+// We tell it to use ejs
+app.set("view engine","ejs")
+// it sets up a public folder
+app.use(express.static('public'))
+// helps parse urls idk
+app.use(express.urlencoded)({extended:true})
+app.use(express.json())
+app.use(cors())
+
+
+
+
+
+
 app.listen(process.env.PORT || PORT ,()=>{
 
     console.log(`Server is running on port ${process.env.PORT}`)
 })
-
-// we create a script so that nodemon can be run whenever we want
