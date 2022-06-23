@@ -45,6 +45,8 @@ app.use(express.static('public'))
 app.use(express.urlencoded)({extended:true})
 app.use(express.json())
 app.use(cors())
+// we create 2 folders called public and views and add ffiles like main.js style.css and index.ejs
+// we add content to main style and index.ejs
 
 
 
