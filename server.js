@@ -5,6 +5,8 @@
 const express = require("express")
 const app = express()
 const cors = require("cors")
+const { request } = require("http")
+const { response } = require("express")
 const MongoClient = require("mongodb").MongoClient
 require('dotenv').config() 
 
@@ -49,6 +51,15 @@ app.use(cors())
 // we add content to main style and index.ejs
 
 
+
+app.get("/",async(request,response)=>{
+    try{
+        response.render('index.ejs')
+    }catch(error){
+        response.status(500).send({message: error.message})
+    }
+
+})
 
 
 
