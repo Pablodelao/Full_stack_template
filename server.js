@@ -25,3 +25,10 @@ MongoClient.connect(dbConnectionString)
         collection = db.collection('movies')
 
     })
+// Now we tell it to listen to a port. In this case we will put the por in our env file. WE do the || so that heroku can pick the port if it neeeds to
+app.listen(process.env.PORT || PORT ,()=>{
+
+    console.log(`Server is running on port ${process.env.PORT}`)
+})
+
+// we create a script so that nodemon can be run whenever we want
