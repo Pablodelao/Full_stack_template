@@ -7,6 +7,7 @@ const app = express()
 const cors = require("cors")
 const MongoClient = require("mongodb").MongoClient
 require('dotenv').config() 
+const PORT = 8000
 
 // Now we declare some variables this is so that we can connect to the database
 // The following is to make sure we are able to get our connection string. Since it will be in another file that won't be pushed
@@ -17,8 +18,9 @@ let db,
     dbName = "sample_mflix",
     collection 
 // this is so that we connect 
-MongoClient.connect(dbConnectionString)
+
 // after that we consolelog that we connected to database and we set the db to the name of the database and collection we are gonna use
+MongoClient.connect(dbConnectionString)
     .then(client => {
         console.log('Connected to database')
         db = client.db(dbName)
@@ -38,11 +40,11 @@ MongoClient.connect(dbConnectionString)
 // We need to put our middleware before our app listen
 
 // We tell it to use ejs
-app.set("view engine","ejs")
+app.set('view engine', 'ejs')
 // it sets up a public folder
 app.use(express.static('public'))
 // helps parse urls idk
-app.use(express.urlencoded)({extended:true})
+app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cors())
 // we create 2 folders called public and views and add ffiles like main.js style.css and index.ejs
@@ -50,20 +52,18 @@ app.use(cors())
 
 // if someone tries to get to our app then we send our index ejs and if error send the error
 
-app.get("/",async(request,response)=>{
-    try{
+app.get('/', async (request, response) => {
+    try {
         response.render('index.ejs')
-    }catch(error){
+    } catch (error) {
         response.status(500).send({message: error.message})
     }
-
 })
 
 
 
 
-app.listen(process.env.PORT || PORT ,()=>{
-
-    console.log(`Server is running on port ${process.env.PORT}`)
+app.listen(process.env.PORT || PORT, () => {
+    console.log(`Server is running on port`)
 })
 // Now we push to heroku
