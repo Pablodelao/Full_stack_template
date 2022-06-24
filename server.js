@@ -50,7 +50,7 @@ app.use(cors())
 // we create 2 folders called public and views and add ffiles like main.js style.css and index.ejs
 // we add content to main style and index.ejs
 
-
+// if someone tries to get to our app then we send our index ejs and if error send the error
 
 app.get("/",async(request,response)=>{
     try{
